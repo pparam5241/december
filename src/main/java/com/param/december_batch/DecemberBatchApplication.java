@@ -9,9 +9,4 @@ public class DecemberBatchApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DecemberBatchApplication.class, args);
 	}
-	
-//	@PostConstruct
-//	public void printName() {
-//		System.out.println("Hello Java.");
-//	}
 }

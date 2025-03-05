@@ -48,4 +48,16 @@ public class EmployeeService {
 		Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee Not Found with ID: " + id));
 		employeeRepository.delete(employee);
 	}
+	
+	public void moveAllTheEmployeesToSpecificDepartment(String name) {
+		Department department = departmentRepository.findByName(name).orElseThrow(() -> new DepartmentNotFoundException("Department not found with name -> " + name));
+		
+		Long departmentId = department.getId();
+		// update employee set department_id = :departmentId;
+		employeeRepository.moveAllEmployeesToDepartment(departmentId);
+	}
+	
+	public List<Employee> getEmployeesByDepartmentName(String name) {
+		return employeeRepository.findByDepartment_Name(name);
+	}
 }

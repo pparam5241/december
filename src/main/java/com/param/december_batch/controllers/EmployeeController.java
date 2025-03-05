@@ -41,10 +41,21 @@ public class EmployeeController {
 			@PathVariable Long employeeId) {
 		return ResponseEntity.ok(service.updateEmployee(employeeId, request));
 	}
-	
+
 	@DeleteMapping("/{employeeId}")
 	public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable(name = "employeeId") Long id) {
 		service.createEmployee(id);
 		return ResponseEntity.ok().build();
+	}
+
+	@PutMapping("/move-all/{name}")
+	public ResponseEntity<HttpStatus> moveAllEmployeeToDepartment(@PathVariable String name) {
+		service.moveAllTheEmployeesToSpecificDepartment(name);
+		return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("/get/{departmentName}")
+	public ResponseEntity<List<Employee>> getAllByDepartmentName(@PathVariable String departmentName) {
+		return ResponseEntity.ok(service.getEmployeesByDepartmentName(departmentName));
 	}
 }
